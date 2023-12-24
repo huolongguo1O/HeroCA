@@ -9,6 +9,7 @@ int parse_arg(char *argv[], int argc){
             if(strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0){
                 // 处理帮助选项
                 ret |= ARG_HELP;
+                printf("");
                 return 1;
             }
             else if(strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0){
