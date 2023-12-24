@@ -1,4 +1,4 @@
-
+#include "args.h"
 int parse_arg(char *argv[], int argc){
     int i;
     int ret;
@@ -13,4 +13,22 @@ int parse_arg(char *argv[], int argc){
                 return 1;
             }
             else if(strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--version") == 0){
+                ret |= ARG_VERSION;
+            }
+            // source compile command
+            else if(strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--compile") == 0){
+                //ret |= ARG_COMPILE;
+                _global_compile_cmd = malloc(strlen(argv[i+1]));
+                strcpy(_global_compile_cmd, argv[i+1]);
+                i++;
+            }
+            // source run command
+            else if(strcmp(argv[i], "-r") == 0 || strcmp(argv[i], "--run-honggfuzz") == 0){
+                ret |= ARG_RUN_HONGGFUZZ;
+            }
+            // source debug command
+            
+        }
+    }
+    return ret;
 }
