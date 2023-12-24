@@ -3,6 +3,6 @@
 
 int compile(char * compile_cmd){
     char * buffer = malloc(strlen(compile_cmd)+37);
-    sprintf(buffer, "%s -Xclang -ast-dump=json > ast.json");
+    sprintf(buffer, "%s -Xclang -ast-dump=json > ast.json",  compile_json);
     return system(buffer);
 }
