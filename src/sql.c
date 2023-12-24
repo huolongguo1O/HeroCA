@@ -1,5 +1,10 @@
 //TODO
 #include "cJSON.h"
+extern struct _ast_linear * ast_linear;
+struct _ast_linear{
+    cJSON * this;
+    struct _ast_linear * next;
+};
 char * parse_sql(char * sql);
 // HCA SQL GRAMMAR
 // 1. SELECT
@@ -20,12 +25,19 @@ typedef struct sql_result{
 
 sql_result * find_eq_str(char * key, char * value){
     sql_result * ret = 0;
-    struct _ast_linear *now = ast_linear;
+    sql_result * ret_now = ret;
+    struct _ast_linear * now = ast_linear;
     while(now != 0){
         cJSON * _value = cJSON_GetObjectItem(now, key);
         if(_value -> valuestring){
             if (strcmp(_value -> valuestring, value) == 0){
-                return now;
+                if(ret == 0){
+                    ret = now -> this;
+                    ret_now = ret;
+                }else{
+                    ret_now -> next = now -> this;
+                    ret_now = ret_now -> next;
+                }
             }
         }
     }
