@@ -1,4 +1,5 @@
 #include "args.h"
+extern char * _global_compile_cmd;
 int parse_arg(char *argv[], int argc){
     int i;
     int ret;
