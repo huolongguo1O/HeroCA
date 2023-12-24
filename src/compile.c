@@ -1,3 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-int compile()
+
+int compile(char * compile_cmd){
+
+}
