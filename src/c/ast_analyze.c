@@ -32,6 +32,9 @@ struct _ast_linear * to_linear(cJSON * _ast){
         now = new;
         if (cJSON_GetArraySize(cJSON_GetObjectItem(cJSON_GetArrayItem(inner,i),"inner")) > 0){
             now -> next = to_linear(cJSON_GetArrayItem(inner,i));
+            while(now -> next != 0){
+                now = now -> next;
+            }
         }
     }
     return head;
