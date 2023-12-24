@@ -6,6 +6,7 @@ struct _ast_linear{
     cJSON * this;
     struct _ast_linear * next;
 } * ast_linear;
+int len_ast_linear = 0;
 char* textFileRead(char* filename)
 {
     char* text;
@@ -43,5 +44,9 @@ int analyze_c(){
     char * text = textFileRead("/tmp/ast.json");
     ast = cJSON_Parse(text);
     ast_linear = to_linear(ast);
+    struct _ast_linear * now = ast_linear;
+    while(now != 0){
+        len_ast_linear++;
+    }
     return ast;
 }
